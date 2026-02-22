@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trout Fishing Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <span class="logo">🎣</span>
+      <h1>Trout Fishing Tracker</h1>
+    </div>
+  </header>
+
+  <main>
+    <!-- ── Trips Panel ── -->
+    <section id="trips-panel" class="panel">
+      <div class="panel-header">
+        <h2>My Fishing Trips</h2>
+        <button id="btn-new-trip" class="btn btn-primary">+ New Trip</button>
+      </div>
+
+      <!-- New / Edit Trip Form -->
+      <div id="trip-form-container" class="form-card hidden">
+        <h3 id="trip-form-title">Start a New Trip</h3>
+        <form id="trip-form">
+          <input type="hidden" id="trip-id" />
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="trip-start">Start Date &amp; Time <span class="required">*</span></label>
+              <input type="datetime-local" id="trip-start" required />
+            </div>
+            <div class="form-group">
+              <label for="trip-end">End Date &amp; Time</label>
+              <input type="datetime-local" id="trip-end" />
+            </div>
+            <div class="form-group full-width">
+              <label for="trip-location">Location</label>
+              <input type="text" id="trip-location" placeholder="e.g. Clear Creek, Mile 12" />
+            </div>
+            <div class="form-group full-width">
+              <label for="trip-notes">Notes</label>
+              <textarea id="trip-notes" rows="2" placeholder="Optional notes about this trip"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="trip-submit-btn">Save Trip</button>
+            <button type="button" class="btn btn-secondary" id="btn-cancel-trip">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Trip List -->
+      <div id="trips-list">
+        <p class="empty-state" id="trips-empty">No trips recorded yet. Start a new trip!</p>
+      </div>
+    </section>
+
+    <!-- ── Trip Detail / Catches Panel ── -->
+    <section id="catches-panel" class="panel hidden">
+      <div class="panel-header">
+        <button id="btn-back" class="btn btn-ghost">← Back to Trips</button>
+        <h2 id="catches-panel-title">Trip Detail</h2>
+        <button id="btn-new-catch" class="btn btn-primary">+ Log Catch</button>
+      </div>
+
+      <!-- Trip summary -->
+      <div id="trip-summary" class="trip-summary-card"></div>
+
+      <!-- New / Edit Catch Form -->
+      <div id="catch-form-container" class="form-card hidden">
+        <h3 id="catch-form-title">Log a Catch</h3>
+        <form id="catch-form">
+          <input type="hidden" id="catch-id" />
+
+          <fieldset>
+            <legend>Catch Details</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="catch-time">Date &amp; Time <span class="required">*</span></label>
+                <input type="datetime-local" id="catch-time" required />
+              </div>
+              <div class="form-group">
+                <label for="catch-species">Species</label>
+                <input type="text" id="catch-species" value="Trout" />
+              </div>
+              <div class="form-group">
+                <label for="catch-length">Length (inches)</label>
+                <input type="number" id="catch-length" min="0" step="0.1" placeholder="e.g. 12.5" />
+              </div>
+              <div class="form-group">
+                <label for="catch-weight">Weight (lbs)</label>
+                <input type="number" id="catch-weight" min="0" step="0.01" placeholder="e.g. 1.25" />
+              </div>
+              <div class="form-group">
+                <label for="catch-lure">Lure / Bait</label>
+                <input type="text" id="catch-lure" placeholder="e.g. Rapala, worm" />
+              </div>
+              <div class="form-group">
+                <label for="catch-kept">Kept?</label>
+                <select id="catch-kept">
+                  <option value="0">Released</option>
+                  <option value="1">Kept</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Water Conditions</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="catch-water-temp">Water Temp (°F)</label>
+                <input type="number" id="catch-water-temp" step="0.1" placeholder="e.g. 58" />
+              </div>
+              <div class="form-group">
+                <label for="catch-water-clarity">Water Clarity</label>
+                <select id="catch-water-clarity">
+                  <option value="">— Select —</option>
+                  <option>Clear</option>
+                  <option>Slightly Stained</option>
+                  <option>Stained</option>
+                  <option>Muddy</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="catch-water-level">Water Level</label>
+                <select id="catch-water-level">
+                  <option value="">— Select —</option>
+                  <option>Low</option>
+                  <option>Normal</option>
+                  <option>High</option>
+                  <option>Flood</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Weather Conditions</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="catch-weather">Sky / Condition</label>
+                <select id="catch-weather">
+                  <option value="">— Select —</option>
+                  <option>Sunny</option>
+                  <option>Partly Cloudy</option>
+                  <option>Overcast</option>
+                  <option>Rainy</option>
+                  <option>Foggy</option>
+                  <option>Stormy</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="catch-air-temp">Air Temp (°F)</label>
+                <input type="number" id="catch-air-temp" step="0.1" placeholder="e.g. 65" />
+              </div>
+              <div class="form-group">
+                <label for="catch-wind-speed">Wind Speed (mph)</label>
+                <input type="number" id="catch-wind-speed" min="0" step="0.1" placeholder="e.g. 8" />
+              </div>
+              <div class="form-group">
+                <label for="catch-wind-dir">Wind Direction</label>
+                <select id="catch-wind-dir">
+                  <option value="">— Select —</option>
+                  <option>N</option><option>NE</option><option>E</option><option>SE</option>
+                  <option>S</option><option>SW</option><option>W</option><option>NW</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="catch-notes">Notes</label>
+            <textarea id="catch-notes" rows="2" placeholder="Optional notes about this catch"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="catch-submit-btn">Save Catch</button>
+            <button type="button" class="btn btn-secondary" id="btn-cancel-catch">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Catches List -->
+      <div id="catches-list">
+        <p class="empty-state" id="catches-empty">No catches logged for this trip yet.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Confirm dialog -->
+  <div id="confirm-overlay" class="overlay hidden">
+    <div class="confirm-dialog">
+      <p id="confirm-message">Are you sure?</p>
+      <div class="form-actions">
+        <button id="confirm-yes" class="btn btn-danger">Delete</button>
+        <button id="confirm-no" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
