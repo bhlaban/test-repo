@@ -1,0 +1,29 @@
+{
+  "name": "trout-log",
+  "version": "1.0.0",
+  "description": "A web application for logging trout fishing catches",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhlaban/test-repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bhlaban/test-repo/issues"
+  },
+  "homepage": "https://github.com/bhlaban/test-repo#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "supertest": "^7.2.2"
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trout Log</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>🎣 Trout Log</h1>
+    <p>Track your trout catches</p>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Log a Catch</h2>
+      <form id="entry-form">
+        <div class="field">
+          <label for="date">Date <span class="required">*</span></label>
+          <input type="date" id="date" name="date" required />
+        </div>
+        <div class="field">
+          <label for="species">Species <span class="required">*</span></label>
+          <input type="text" id="species" name="species" placeholder="e.g. Rainbow, Brown, Brook" required />
+        </div>
+        <div class="field">
+          <label for="weight">Weight (lbs)</label>
+          <input type="number" id="weight" name="weight" step="0.1" min="0" placeholder="e.g. 2.5" />
+        </div>
+        <div class="field">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" placeholder="e.g. Green River" />
+        </div>
+        <div class="field">
+          <label for="notes">Notes</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Bait used, weather conditions, etc."></textarea>
+        </div>
+        <button type="submit">Add Entry</button>
+      </form>
+    </section>
+
+    <section class="log-section">
+      <h2>My Catches</h2>
+      <div id="entry-list"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
